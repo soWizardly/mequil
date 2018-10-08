@@ -2,7 +2,6 @@
 # https://symfony.com/doc/current/service_container.html
 parameters:
     weather_service: 'wunderground'
-    wunderground_api_key: 'ca97d910b70b3fd3'
 
 services:
     # default configuration for services in *this* file

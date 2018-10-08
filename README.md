@@ -1,4 +1,4 @@
 mequil
 ======
 
-A Symfony project created on October 7, 2018, 1:49 pm.
+You need to add "wunderground_api_key" and it's value to the parameters.yml file before everything will work as intended
