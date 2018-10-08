@@ -42,7 +42,7 @@ class GetWeatherCommand extends Command {
             $locationData = new LocationData;
             $locationData->setLocationId($locationId);
             $locationData->setDate($data["date"]);
-            $locationData->setTemp($data["temp"]);
+            $locationData->setTemperature($data["temp"]);
             $this->em->persist($locationData);
         }
 
