@@ -1,7 +1,8 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
-    #parameter_name: value
+    weather_service: 'wunderground'
+    wunderground_api_key: 'ca97d910b70b3fd3'
 
 services:
     # default configuration for services in *this* file
@@ -30,6 +31,11 @@ services:
         tags: ['controller.service_arguments']
 
     # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+    AppBundle\Service\WeatherFactory:
+        arguments:
+            $weatherService: '%weather_service%'
+            $apiKey: '%wunderground_api_key%'
+
+    AppBundle\Command\GetWeatherCommand:
+        arguments:
+            $em: "@doctrine.orm.entity_manager"

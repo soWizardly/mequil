@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+
+            <div id="welcome">
+                <h1><span>Welcome to the</span> Weather App</h1>
+            </div>
+
+            <div id="status">
+                {% for location in locations %}
+                    <a href="locations/{{ location.id }}">
+                        {{ location.city|replace('_',' ') }},{{ location.state }}</a>
+                         Min: {%  if location.min_temp_c %} {{ "%s C / %s F"|format(location.min_temp_c,location.min_temp_f) }} {% else %} N/A {% endif %}
+                         Max: {%  if location.max_temp_c %} {{ "%s C / %s F"|format(location.max_temp_c,location.max_temp_f) }} {% else %} N/A {% endif %}
+                         Avg: {%  if location.avg_temp_c %} {{ "%s C / %s F"|format(location.avg_temp_c,location.avg_temp_f) }} {% else %} N/A {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+
+            <h3>Add a new location:</h3>
+            <form action="/locations/" method="post">
+                <label for="city">City: </label><input type="text" name="city" placeholder="Woburn">
+                <label for="state">State: </label><input type="text" name="state" placeholder="MA">
+                <input type="submit" name="submit">
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 21px; margin-bottom: 1em; }
+    p { margin: 0 0 1em 0; }
+    a { color: #0000F0; }
+    a:hover { text-decoration: none; }
+    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+    #container { padding: 2em; }
+    #welcome, #status { margin-bottom: 2em; }
+    #welcome h1 span { display: block; font-size: 75%; }
+    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+    #icon-book { display: none; }
+
+    @media (min-width: 768px) {
+        #wrapper { width: 80%; margin: 2em auto; }
+        #icon-book { display: inline-block; }
+        #status a, #next a { display: block; }
+
+        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+    }
+</style>
+{% endblock %}
