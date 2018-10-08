@@ -31,11 +31,6 @@ class Location
      */
     private $state;
 
-    /**
-     * @ORM\OneToMany(targetEntity="LocationData", mappedBy="location")
-     */
-    private $data;
-
 
     /**
      * Get id

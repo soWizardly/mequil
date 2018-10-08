@@ -24,7 +24,7 @@ class LocationData
     /**
      * @var int
      *
-     * @ORM\Column(name="location_id", type="integer", unique=true)
+     * @ORM\Column(name="location_id", type="integer")
      */
     private $locationId;
 
@@ -41,12 +41,6 @@ class LocationData
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Location", inversedBy="data")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
-     */
-    private $location;
 
 
     /**
