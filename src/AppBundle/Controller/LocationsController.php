@@ -41,7 +41,7 @@ class LocationsController extends Controller
         $city  = str_replace(" ", "_", ucwords(strtolower($request->request->get('city'))));
         $state = ucwords(strtolower($request->request->get('state')));
 
-        if (strlen($state)>2) {
+        if (strlen($state)!=2) {
             throw new \Exception("Must put a states 2 character abbreviation");
         }
 
